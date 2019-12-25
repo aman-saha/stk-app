@@ -20,3 +20,4 @@ $ sudo pip install virtualenv
 $ virtualenv stk-screen
 $ source stk-screen/bin/activate
 $ pip install selenium
+$ pip install pymongo
