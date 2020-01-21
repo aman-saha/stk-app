@@ -21,3 +21,15 @@ $ virtualenv stk-screen
 $ source stk-screen/bin/activate
 $ pip install selenium
 $ pip install pymongo
+
+## Installing MongoDb
+
+```
+$ brew services stop mongodb
+$ brew uninstall mongodb
+
+$ brew tap mongodb/brew
+$ brew install mongodb-community
+$ brew services start mongodb-community
+
+```

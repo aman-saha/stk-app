@@ -3,6 +3,7 @@ import os, sys, time
 from db import db as db
 import selenium
 import pymongo
+from pymongo import MongoClient
 from selenium import webdriver
 from selenium.webdriver import Firefox
 from selenium.webdriver.firefox.options import Options
@@ -40,8 +41,8 @@ class crawler():
 	def parseRow(self,row):
 		row = row.text;
 		row_data = row.split()
-		if(row_data[0] == "Symbol"):
-			print "Row Headers\n"
+		# if(row_data[0] == "Symbol"):
+		# 	print "Row Headers\n"
 		#print type(row)
 		#print "\n"
 
@@ -55,6 +56,8 @@ ob.initFirefoxBrowser()
 ob.getStockList()
 ob.quit()
 
-conn = pymongo.MongoClient("mongodb://localhost:27017/")
-db = db(conn)
-db.insertOne()
+client = MongoClient()
+stkdb = client['stk_db']
+collection = stkdb['nifty_50_collection']
+db = db(client)
+db.existsDb()

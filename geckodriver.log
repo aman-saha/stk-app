@@ -1,0 +1,148 @@
+1579603285589	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "-marionette" "--incognito" "--headless" "-foreground" "-no-remote" "-profile" "/var/folders/8b/lw4xk38n7rj1kd5yds19jkkr0000gq/T/rust_mozprofile1geSmW"
+*** You are running in headless mode.
+1579603285961	addons.webextension.doh-rollout@mozilla.org	WARN	Loading extension 'doh-rollout@mozilla.org': Reading manifest: Invalid extension permission: networkStatus
+1579603286045	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1579603286045	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: telemetry
+1579603286046	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1579603286046	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1579603287276	Marionette	INFO	Listening on port 60420
+1579603287346	Marionette	WARN	TLS certificate errors will be ignored for this session
+1579603295627	Marionette	INFO	Stopped listening on port 60420
+1579603425349	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "-marionette" "--incognito" "--headless" "-foreground" "-no-remote" "-profile" "/var/folders/8b/lw4xk38n7rj1kd5yds19jkkr0000gq/T/rust_mozprofileflt0Tr"
+*** You are running in headless mode.
+1579603425638	addons.webextension.doh-rollout@mozilla.org	WARN	Loading extension 'doh-rollout@mozilla.org': Reading manifest: Invalid extension permission: networkStatus
+1579603425714	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1579603425715	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: telemetry
+1579603425715	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1579603425717	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1579603426884	Marionette	INFO	Listening on port 60762
+1579603426913	Marionette	WARN	TLS certificate errors will be ignored for this session
+1579603450080	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "-marionette" "--incognito" "--headless" "-foreground" "-no-remote" "-profile" "/var/folders/8b/lw4xk38n7rj1kd5yds19jkkr0000gq/T/rust_mozprofile5rsMYF"
+*** You are running in headless mode.
+1579603450404	addons.webextension.doh-rollout@mozilla.org	WARN	Loading extension 'doh-rollout@mozilla.org': Reading manifest: Invalid extension permission: networkStatus
+1579603450481	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1579603450481	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: telemetry
+1579603450481	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1579603450483	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1579603451726	Marionette	INFO	Listening on port 60811
+1579603451743	Marionette	WARN	TLS certificate errors will be ignored for this session
+1579603459722	Marionette	INFO	Stopped listening on port 60811
+JavaScript error: https://www1.nseindia.com/common/js/js.js, line 85: ReferenceError: getTopGainersData is not defined
+JavaScript error: https://www1.nseindia.com/common/js/js.js, line 85: ReferenceError: getTopGainersData is not defined
+JavaScript error: https://www1.nseindia.com/common/js/js.js, line 85: ReferenceError: getTopGainersData is not defined
+JavaScript error: https://www1.nseindia.com/common/js/js.js, line 85: ReferenceError: getTopGainersData is not defined
+JavaScript error: https://www1.nseindia.com/common/js/js.js, line 85: ReferenceError: getTopGainersData is not defined
+JavaScript error: https://www1.nseindia.com/common/js/js.js, line 85: ReferenceError: getTopGainersData is not defined
+1579603796622	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "-marionette" "--incognito" "--headless" "-foreground" "-no-remote" "-profile" "/var/folders/8b/lw4xk38n7rj1kd5yds19jkkr0000gq/T/rust_mozprofileQ1yx0R"
+*** You are running in headless mode.
+1579603796964	addons.webextension.doh-rollout@mozilla.org	WARN	Loading extension 'doh-rollout@mozilla.org': Reading manifest: Invalid extension permission: networkStatus
+1579603797047	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1579603797047	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: telemetry
+1579603797047	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1579603797047	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1579603798284	Marionette	INFO	Listening on port 61052
+1579603798389	Marionette	WARN	TLS certificate errors will be ignored for this session
+1579603806787	Marionette	INFO	Stopped listening on port 61052
+JavaScript error: https://www1.nseindia.com/common/js/js.js, line 85: ReferenceError: getTopGainersData is not defined
+JavaScript error: https://www1.nseindia.com/common/js/js.js, line 85: ReferenceError: getTopGainersData is not defined
+1579603915647	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "-marionette" "--incognito" "--headless" "-foreground" "-no-remote" "-profile" "/var/folders/8b/lw4xk38n7rj1kd5yds19jkkr0000gq/T/rust_mozprofilepset7Z"
+*** You are running in headless mode.
+1579603915949	addons.webextension.doh-rollout@mozilla.org	WARN	Loading extension 'doh-rollout@mozilla.org': Reading manifest: Invalid extension permission: networkStatus
+1579603916025	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1579603916025	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: telemetry
+1579603916026	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1579603916026	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1579603917321	Marionette	INFO	Listening on port 61140
+1579603917422	Marionette	WARN	TLS certificate errors will be ignored for this session
+1579603925626	Marionette	INFO	Stopped listening on port 61140
+JavaScript error: https://www1.nseindia.com/common/js/js.js, line 85: ReferenceError: getTopGainersData is not defined
+1579604008192	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "-marionette" "--incognito" "--headless" "-foreground" "-no-remote" "-profile" "/var/folders/8b/lw4xk38n7rj1kd5yds19jkkr0000gq/T/rust_mozprofilesGCJAk"
+*** You are running in headless mode.
+1579604008505	addons.webextension.doh-rollout@mozilla.org	WARN	Loading extension 'doh-rollout@mozilla.org': Reading manifest: Invalid extension permission: networkStatus
+1579604008583	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1579604008583	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: telemetry
+1579604008583	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1579604008583	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1579604010411	Marionette	INFO	Listening on port 61228
+1579604010473	Marionette	WARN	TLS certificate errors will be ignored for this session
+1579604019817	Marionette	INFO	Stopped listening on port 61228
+JavaScript error: https://www1.nseindia.com/common/js/js.js, line 85: ReferenceError: getTopGainersData is not defined
+1579604086784	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "-marionette" "--incognito" "--headless" "-foreground" "-no-remote" "-profile" "/var/folders/8b/lw4xk38n7rj1kd5yds19jkkr0000gq/T/rust_mozprofilejYSkfV"
+*** You are running in headless mode.
+1579604087112	addons.webextension.doh-rollout@mozilla.org	WARN	Loading extension 'doh-rollout@mozilla.org': Reading manifest: Invalid extension permission: networkStatus
+1579604087195	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1579604087195	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: telemetry
+1579604087195	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1579604087197	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1579604088400	Marionette	INFO	Listening on port 61333
+1579604088449	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://www1.nseindia.com/common/js/js.js, line 85: ReferenceError: getTopGainersData is not defined
+1579604097079	Marionette	INFO	Stopped listening on port 61333
+1579604127629	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "-marionette" "--incognito" "--headless" "-foreground" "-no-remote" "-profile" "/var/folders/8b/lw4xk38n7rj1kd5yds19jkkr0000gq/T/rust_mozprofileURTm1R"
+*** You are running in headless mode.
+1579604127920	addons.webextension.doh-rollout@mozilla.org	WARN	Loading extension 'doh-rollout@mozilla.org': Reading manifest: Invalid extension permission: networkStatus
+1579604127996	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1579604127996	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: telemetry
+1579604127996	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1579604127996	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1579604129209	Marionette	INFO	Listening on port 61400
+1579604129294	Marionette	WARN	TLS certificate errors will be ignored for this session
+1579604137767	Marionette	INFO	Stopped listening on port 61400
+JavaScript error: https://www1.nseindia.com/common/js/js.js, line 85: ReferenceError: getTopGainersData is not defined
+JavaScript error: https://www1.nseindia.com/common/js/js.js, line 85: ReferenceError: getTopGainersData is not defined
+JavaScript error: https://www1.nseindia.com/common/js/js.js, line 85: ReferenceError: getTopGainersData is not defined
+JavaScript error: https://www1.nseindia.com/common/js/js.js, line 85: ReferenceError: getTopGainersData is not defined
+JavaScript error: https://www1.nseindia.com/common/js/js.js, line 85: ReferenceError: getTopGainersData is not defined
+JavaScript error: https://www1.nseindia.com/common/js/js.js, line 85: ReferenceError: getTopGainersData is not defined
+JavaScript error: https://www1.nseindia.com/common/js/js.js, line 85: ReferenceError: getTopGainersData is not defined
+JavaScript error: https://www1.nseindia.com/common/js/js.js, line 85: ReferenceError: getTopGainersData is not defined
+JavaScript error: https://www1.nseindia.com/common/js/js.js, line 85: ReferenceError: getTopGainersData is not defined
+1579604636218	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "-marionette" "--incognito" "--headless" "-foreground" "-no-remote" "-profile" "/var/folders/8b/lw4xk38n7rj1kd5yds19jkkr0000gq/T/rust_mozprofileHgcWgi"
+*** You are running in headless mode.
+1579604636506	addons.webextension.doh-rollout@mozilla.org	WARN	Loading extension 'doh-rollout@mozilla.org': Reading manifest: Invalid extension permission: networkStatus
+1579604636582	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1579604636582	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: telemetry
+1579604636584	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1579604636584	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1579604637822	Marionette	INFO	Listening on port 61665
+1579604637889	Marionette	WARN	TLS certificate errors will be ignored for this session
+1579604648421	Marionette	INFO	Stopped listening on port 61665
+JavaScript error: https://www1.nseindia.com/common/js/js.js, line 85: ReferenceError: getTopGainersData is not defined
+1579604716634	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "-marionette" "--incognito" "--headless" "-foreground" "-no-remote" "-profile" "/var/folders/8b/lw4xk38n7rj1kd5yds19jkkr0000gq/T/rust_mozprofileSMPeS4"
+*** You are running in headless mode.
+1579604716952	addons.webextension.doh-rollout@mozilla.org	WARN	Loading extension 'doh-rollout@mozilla.org': Reading manifest: Invalid extension permission: networkStatus
+1579604717028	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1579604717028	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: telemetry
+1579604717028	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1579604717030	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1579604718482	Marionette	INFO	Listening on port 61760
+1579604718514	Marionette	WARN	TLS certificate errors will be ignored for this session
+1579604727165	Marionette	INFO	Stopped listening on port 61760
+JavaScript error: https://www1.nseindia.com/common/js/js.js, line 85: ReferenceError: getTopGainersData is not defined
+JavaScript error: https://www1.nseindia.com/common/js/js.js, line 85: ReferenceError: getTopGainersData is not defined
+1579604814209	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "-marionette" "--incognito" "--headless" "-foreground" "-no-remote" "-profile" "/var/folders/8b/lw4xk38n7rj1kd5yds19jkkr0000gq/T/rust_mozprofileGw0yau"
+*** You are running in headless mode.
+1579604814501	addons.webextension.doh-rollout@mozilla.org	WARN	Loading extension 'doh-rollout@mozilla.org': Reading manifest: Invalid extension permission: networkStatus
+1579604814578	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1579604814578	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: telemetry
+1579604814578	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1579604814580	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1579604815771	Marionette	INFO	Listening on port 61856
+1579604815872	Marionette	WARN	TLS certificate errors will be ignored for this session
+1579604824035	Marionette	INFO	Stopped listening on port 61856
+JavaScript error: https://www1.nseindia.com/common/js/js.js, line 85: ReferenceError: getTopGainersData is not defined
+JavaScript error: https://www1.nseindia.com/common/js/js.js, line 85: ReferenceError: getTopGainersData is not defined
+JavaScript error: https://www1.nseindia.com/common/js/js.js, line 85: ReferenceError: getTopGainersData is not defined
+JavaScript error: https://www1.nseindia.com/common/js/js.js, line 85: ReferenceError: getTopGainersData is not defined
+JavaScript error: https://www1.nseindia.com/common/js/js.js, line 85: ReferenceError: getTopGainersData is not defined
+JavaScript error: https://www1.nseindia.com/common/js/js.js, line 85: ReferenceError: getTopGainersData is not defined
+JavaScript error: https://www1.nseindia.com/common/js/js.js, line 85: ReferenceError: getTopGainersData is not defined
+JavaScript error: https://www1.nseindia.com/common/js/js.js, line 85: ReferenceError: getTopGainersData is not defined
+JavaScript error: https://www1.nseindia.com/common/js/js.js, line 85: ReferenceError: getTopGainersData is not defined
+JavaScript error: https://www1.nseindia.com/common/js/js.js, line 85: ReferenceError: getTopGainersData is not defined
+JavaScript error: https://www1.nseindia.com/common/js/js.js, line 85: ReferenceError: getTopGainersData is not defined
+JavaScript error: https://www1.nseindia.com/common/js/js.js, line 85: ReferenceError: getTopGainersData is not defined
+JavaScript error: https://www1.nseindia.com/common/js/js.js, line 85: ReferenceError: getTopGainersData is not defined
+JavaScript error: https://www1.nseindia.com/common/js/js.js, line 85: ReferenceError: getTopGainersData is not defined
+JavaScript error: https://www1.nseindia.com/common/js/js.js, line 85: ReferenceError: getTopGainersData is not defined
+JavaScript error: https://www1.nseindia.com/common/js/js.js, line 85: ReferenceError: getTopGainersData is not defined
