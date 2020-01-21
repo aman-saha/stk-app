@@ -1,6 +1,6 @@
 #helloworld!
 import os, sys, time
-from db import db as db
+import locale
 import selenium
 import pymongo
 from pymongo import MongoClient
@@ -9,7 +9,22 @@ from selenium.webdriver import Firefox
 from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import Select
-class crawler():
+from db import db
+from datetime import datetime
+
+locale.setlocale( locale.LC_ALL, 'en_US.UTF-8' )
+
+now = datetime.now()
+currentDate = now.strftime("%d/%m/%Y")
+currentTime = now.strftime("%H:%M:%S")
+print currentDate
+print currentTime
+
+client = MongoClient()
+stk_db = client['stk_db']
+db = db(client,stk_db)
+
+class crawl():
 	def __init__(self, driver,url):
 		self.driver = driver
 		self.url = url
@@ -20,7 +35,7 @@ class crawler():
 	def getStockList(self):
 		print "Hello world!!"
 		#stockIndex = ["Nifty 50", "Nifty Next 50", "Nifty Midcap 50"]
-		stockIndex = ["Nifty 50"]
+		stockIndex = ["Nifty Bank"]
 		for index in stockIndex:
 			ob.getEachStock(index)
 			time.sleep(5)
@@ -31,9 +46,23 @@ class crawler():
 		self.driver.find_element_by_name('bankNiftySelect').click()
 		table = self.driver.find_element_by_xpath('//*[@id="dataTable"]')
 		rows = table.find_elements_by_xpath('//*[@id="dataTable"]/tbody/tr') # get all of the rows in the table
+		
+		collections = {
+			'Nifty 50' : 'nifty_50',
+			'Nifty Next 50' : 'nifty_next_50',
+			'Nifty Midcap 50' : 'nifty_midcap_50',
+			'Nifty Bank' : 'nifty_bank',
+			'Nifty Smlcap 50':'nifty_smlcap_50',
+		}
+		stockBulkData = []
+		stockData = {}
 		for row in rows:
-			ob.parseRow(row)
-		#	print row.text+"\n"
+			stockData = ob.parseRow(row)
+			if stockData:
+				stockBulkData.append(stockData)
+		print stockBulkData
+		db.insertMany(stockBulkData,collections[index])
+		
 
 	def quit(self):	
 		self.driver.quit()
@@ -41,35 +70,30 @@ class crawler():
 	def parseRow(self,row):
 		row = row.text
 		row_data = row.split()
-		if(row_data[0] == "Symbol"):
-			print "\n"
-		else:
-			stock_data = [{
-				"Symbol" : row_data[0],
-				"CA" : row_data[1],
-				"Open" : row_data[2],
-				"High" : row_data[3],
-				"Low" : row_data[4],
-				"LTP" : row_data[5],
-				"Chng" : row_data[6],
-				"Volume" : row_data[7],
-			}]
-			print stock_data
-			print "\n"
-		#print type(row)
+		stock_data = {}
+		if(row_data[0] != "Symbol"):
+			stock_data = {
+				"Symbol" : str(row_data[0]),
+				"Open" : locale.atof(row_data[2]),
+				"High" : locale.atof(row_data[3]),
+				"Low" : locale.atof(row_data[4]),
+				"LTP" : locale.atof(row_data[5]),
+				"Chng" : locale.atof(row_data[6]),
+				"Volume" : locale.atof(row_data[7]),
+				"Date" : currentDate,
+				"Time" : currentTime,
+			}
+		return stock_data
 
 firefox_options = webdriver.FirefoxOptions()
 firefox_options.add_argument("--incognito")
 firefox_options.add_argument("--headless")
 driver = webdriver.Firefox(firefox_options=firefox_options, executable_path="/Users/amsaha/workspaces/git_proj/stk-app/stk-screen/crawler/drivers/geckodriver")
 url = "https://www.nseindia.com/live_market/dynaContent/live_watch/equities_stock_watch.htm"
-ob = crawler(driver,url)
+ob = crawl(driver,url)
 ob.initFirefoxBrowser()
 ob.getStockList()
 ob.quit()
 
-client = MongoClient()
-stkdb = client['stk_db']
-collection = stkdb['nifty_50_collection']
-db = db(client)
-db.existsDb()
+
+
