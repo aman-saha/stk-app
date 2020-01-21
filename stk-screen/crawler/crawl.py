@@ -39,12 +39,24 @@ class crawler():
 		self.driver.quit()
 
 	def parseRow(self,row):
-		row = row.text;
+		row = row.text
 		row_data = row.split()
-		# if(row_data[0] == "Symbol"):
-		# 	print "Row Headers\n"
+		if(row_data[0] == "Symbol"):
+			print "\n"
+		else:
+			stock_data = [{
+				"Symbol" : row_data[0],
+				"CA" : row_data[1],
+				"Open" : row_data[2],
+				"High" : row_data[3],
+				"Low" : row_data[4],
+				"LTP" : row_data[5],
+				"Chng" : row_data[6],
+				"Volume" : row_data[7],
+			}]
+			print stock_data
+			print "\n"
 		#print type(row)
-		#print "\n"
 
 firefox_options = webdriver.FirefoxOptions()
 firefox_options.add_argument("--incognito")
