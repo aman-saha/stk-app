@@ -1,4 +1,4 @@
-#helloworl!
+#helloworld!
 import os, sys, time
 from db import db as db
 import selenium
@@ -18,7 +18,8 @@ class crawler():
 
 	def getStockList(self):
 		print "Hello world!!"
-		stockIndex = ["Nifty 50", "Nifty Next 50", "Nifty Midcap 50"]
+		#stockIndex = ["Nifty 50", "Nifty Next 50", "Nifty Midcap 50"]
+		stockIndex = ["Nifty 50"]
 		for index in stockIndex:
 			ob.getEachStock(index)
 			time.sleep(5)
@@ -30,19 +31,30 @@ class crawler():
 		table = self.driver.find_element_by_xpath('//*[@id="dataTable"]')
 		rows = table.find_elements_by_xpath('//*[@id="dataTable"]/tbody/tr') # get all of the rows in the table
 		for row in rows:
-			print row.text+"\n"
+			ob.parseRow(row)
+		#	print row.text+"\n"
 
 	def quit(self):	
 		self.driver.quit()
 
+	def parseRow(self,row):
+		row = row.text;
+		row_data = row.split()
+		if(row_data[0] == "Symbol"):
+			print "Row Headers\n"
+		#print type(row)
+		#print "\n"
+
 firefox_options = webdriver.FirefoxOptions()
 firefox_options.add_argument("--incognito")
+firefox_options.add_argument("--headless")
 driver = webdriver.Firefox(firefox_options=firefox_options, executable_path="/Users/amsaha/workspaces/git_proj/stk-app/stk-screen/crawler/drivers/geckodriver")
 url = "https://www.nseindia.com/live_market/dynaContent/live_watch/equities_stock_watch.htm"
+ob = crawler(driver,url)
+ob.initFirefoxBrowser()
+ob.getStockList()
+ob.quit()
+
 conn = pymongo.MongoClient("mongodb://localhost:27017/")
-# ob = crawler(driver,url)
-# ob.initFirefoxBrowser()
-# ob.getStockList()
-# ob.quit()
 db = db(conn)
 db.insertOne()
