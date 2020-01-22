@@ -26,7 +26,17 @@ class db():
     def findQuery(self,collection,query):
         col = self.stk_db[collection]
         return col.find(query)
+    
+    def delManyQuery(self,collection,query):
+        col = self.stk_db[collection]
+        res = col.delete_many(query)
+        return res.deleted_count
 
+    def delAll(self,collection):
+        col = self.stk_db[collection]
+        res = col.delete_many({})
+        return res.deleted_count
+    
     def dropCollection(self,collection):
         col = self.stk_db[collection]
         col.drop()

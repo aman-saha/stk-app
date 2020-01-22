@@ -46,7 +46,7 @@ class snapshot():
 		table = self.driver.find_element_by_xpath('//*[@id="dataTable"]')
 		rows = table.find_elements_by_xpath('//*[@id="dataTable"]/tbody/tr') # get all of the rows in the table
 		
-		collections = {
+		snapshot_collections = {
 			'Nifty 50' : 'snapshot_nifty_50',
 			'Nifty Next 50' : 'snapshot_nifty_next_50',
 			'Nifty Midcap 50' : 'snapshot_nifty_midcap_50',
@@ -60,7 +60,7 @@ class snapshot():
 			if stockData:
 				stockBulkData.append(stockData)
 		# print stockBulkData
-		db.insertMany(stockBulkData,collections[index])
+		db.insertMany(stockBulkData,snapshot_collections[index])
 		
 
 	def quit(self):	

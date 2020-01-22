@@ -34,7 +34,7 @@ class crawl():
 	def getStockList(self):
 		print "Hello world!!"
 		#stockIndex = ["Nifty 50", "Nifty Next 50", "Nifty Midcap 50"]
-		stockIndex = ["Nifty Bank"]
+		stockIndex = ["Nifty 50", "Nifty Bank"]
 		for index in stockIndex:
 			ob.getEachStock(index)
 			time.sleep(5)
@@ -60,6 +60,7 @@ class crawl():
 			if stockData:
 				stockBulkData.append(stockData)
 		# print stockBulkData
+		print collections[index]
 		db.insertMany(stockBulkData,collections[index])
 		
 
@@ -68,20 +69,27 @@ class crawl():
 
 	def parseRow(self,row):
 		row = row.text
+		print row
+		print "\n"
 		row_data = row.split()
+		print row_data
+		print "\n"
 		stock_data = {}
 		if(row_data[0] != "Symbol"):
 			stock_data = {
 				"Symbol" : str(row_data[0]),
-				"Open" : locale.atof(row_data[2]),
-				"High" : locale.atof(row_data[3]),
-				"Low" : locale.atof(row_data[4]),
-				"LTP" : locale.atof(row_data[5]),
-				"Chng" : locale.atof(row_data[6]),
-				"Volume" : locale.atof(row_data[7]),
+				"Open" : locale.atof(row_data[3]),
+				"High" : locale.atof(row_data[4]),
+				"Low" : locale.atof(row_data[5]),
+				"LTP" : locale.atof(row_data[6]),
+				"Chng" : locale.atof(row_data[7]),
+				"Chng%" : locale.atof(row_data[8]),
+				"Volume" : locale.atof(row_data[8]),
 				"Date" : currentDate,
 				"Time" : currentTime,
 			}
+		print stock_data
+		print "\n"
 		return stock_data
 
 

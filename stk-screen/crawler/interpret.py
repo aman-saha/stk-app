@@ -17,7 +17,8 @@ class interpret():
         for index in collections.values():
             stock_data = db.findMany(index)
             for stock in stock_data:
-                ob.stockCall(stock)
+                if stock:
+                    ob.stockCall(stock)
     def calMarketSentiment(self):
         index_val = []
         index_arr = ['nifty_50','nifty_bank']
@@ -32,8 +33,40 @@ class interpret():
     def stockCall(self,stock):
         print stock
         print "\n"
-        
+        stock_symbols = []
+        symbol = stock["Symbol"]
+        ltp = stock["LTP"]
+        chng = abs(stock["Chng"])
+        chng_percent = abs(stock["Chng%"])
+        if(chng_percent > 3):
+            ob.retracementCall(symbol)
+        elif(stock["LTP"] < 10000):
+            if (ltp < 220):
+                if chng >= 1:
+                    stock_symbols.append(symbol)
+            elif (ltp > 221 and ltp < 250):
+                if chng >= 3:
+                    stock_symbols.append(symbol)
+            elif (ltp > 251 and ltp < 450):
+                if chng >= 4:
+                    stock_symbols.append(symbol)
+            elif (ltp > 451 and ltp < 999):
+                if chng >=5:
+                    stock_symbols.append(symbol)
+            elif (ltp > 999  and ltp < 2200):
+                if(chng >= 8):
+                    stock_symbols.append(symbol)
+            elif (ltp > 2300):
+                if(chng > 30):
+                    stock_symbols.append(symbol)
+            ob.OptionalCall(stock_symbols)
 
+    def retracementCall(self,stockSymbol):
+        print "Sending E-mail to Aman\n"
+    
+    def OptionalCall(self,stockSymbols):
+        print "Sending E-mail to Aman\n"
+        print stockSymbols
 
 db = db()
 ob = interpret()
