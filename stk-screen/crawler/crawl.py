@@ -20,17 +20,16 @@ currentTime = now.strftime("%H:%M:%S")
 print currentDate
 print currentTime
 
-client = MongoClient()
-stk_db = client['stk_db']
-db = db(client,stk_db)
-
 class crawl():
-	def __init__(self, driver,url):
-		self.driver = driver
+	def __init__(self,url):
 		self.url = url
 	
 	def initFirefoxBrowser(self):
-		driver.get(self.url)
+		firefox_options = webdriver.FirefoxOptions()
+		firefox_options.add_argument("--incognito")
+		firefox_options.add_argument("--headless")
+		self.driver = webdriver.Firefox(firefox_options=firefox_options, executable_path="/Users/amsaha/workspaces/git_proj/stk-app/stk-screen/crawler/drivers/geckodriver")
+		self.driver.get(self.url)
 
 	def getStockList(self):
 		print "Hello world!!"
@@ -41,7 +40,7 @@ class crawl():
 			time.sleep(5)
 		
 	def getEachStock(self,index):
-		select = Select(driver.find_element_by_name('bankNiftySelect'))
+		select = Select(self.driver.find_element_by_name('bankNiftySelect'))
 		select.select_by_visible_text(index)
 		self.driver.find_element_by_name('bankNiftySelect').click()
 		table = self.driver.find_element_by_xpath('//*[@id="dataTable"]')
@@ -51,8 +50,8 @@ class crawl():
 			'Nifty 50' : 'nifty_50',
 			'Nifty Next 50' : 'nifty_next_50',
 			'Nifty Midcap 50' : 'nifty_midcap_50',
-			'Nifty Bank' : 'nifty_bank',
 			'Nifty Smlcap 50':'nifty_smlcap_50',
+			'Nifty Bank' : 'nifty_bank',
 		}
 		stockBulkData = []
 		stockData = {}
@@ -60,7 +59,7 @@ class crawl():
 			stockData = ob.parseRow(row)
 			if stockData:
 				stockBulkData.append(stockData)
-		print stockBulkData
+		# print stockBulkData
 		db.insertMany(stockBulkData,collections[index])
 		
 
@@ -85,12 +84,12 @@ class crawl():
 			}
 		return stock_data
 
-firefox_options = webdriver.FirefoxOptions()
-firefox_options.add_argument("--incognito")
-firefox_options.add_argument("--headless")
-driver = webdriver.Firefox(firefox_options=firefox_options, executable_path="/Users/amsaha/workspaces/git_proj/stk-app/stk-screen/crawler/drivers/geckodriver")
+
+
+db = db()
+
 url = "https://www.nseindia.com/live_market/dynaContent/live_watch/equities_stock_watch.htm"
-ob = crawl(driver,url)
+ob = crawl(url)
 ob.initFirefoxBrowser()
 ob.getStockList()
 ob.quit()
