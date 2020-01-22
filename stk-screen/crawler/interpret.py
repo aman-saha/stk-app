@@ -3,7 +3,7 @@ import os, sys, time
 from datetime import datetime
 from db import db
 collections = {
-			# 'Nifty 50' : 'nifty_50',
+			'Nifty 50' : 'nifty_50',
 			# 'Nifty Next 50' : 'nifty_next_50',
 			# 'Nifty Midcap 50' : 'nifty_midcap_50',
 			# 'Nifty Smlcap 50':'nifty_smlcap_50',
@@ -13,12 +13,14 @@ class interpret():
     def __init__(self):
         self.marketSentiment = 0
         self.globalMarketSentiment = 0
+
     def getStockData(self):
         for index in collections.values():
             stock_data = db.findMany(index)
             for stock in stock_data:
                 if stock:
                     ob.stockCall(stock)
+                    
     def calMarketSentiment(self):
         index_val = []
         index_arr = ['nifty_50','nifty_bank']
@@ -71,4 +73,4 @@ class interpret():
 db = db()
 ob = interpret()
 ob.getStockData()
-ob.calMarketSentiment()
+# ob.calMarketSentiment()

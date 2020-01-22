@@ -71,17 +71,19 @@ class snapshot():
 		row_data = row.split()
 		stock_data = {}
 		if(row_data[0] != "Symbol"):
-			stock_data = {
-				"Symbol" : str(row_data[0]),
-				"Open" : locale.atof(row_data[2]),
-				"High" : locale.atof(row_data[3]),
-				"Low" : locale.atof(row_data[4]),
-				"LTP" : locale.atof(row_data[5]),
-				"Chng" : locale.atof(row_data[6]),
-				"Volume" : locale.atof(row_data[7]),
-				"Date" : currentDate,
-				"Time" : currentTime,
-			}
+			if(row_data[0] != "NIFTY"):
+				stock_data = {
+					"Symbol" : str(row_data[0]),
+					"Open" : locale.atof(row_data[1]),
+					"High" : locale.atof(row_data[2]),
+					"Low" : locale.atof(row_data[3]),
+					"LTP" : locale.atof(row_data[4]),
+					"Chng" : locale.atof(row_data[5]),
+					"Chng%" : locale.atof(row_data[6]),
+					"Volume" : locale.atof(row_data[7]),
+					"Date" : currentDate,
+					"Time" : currentTime,
+				}
 		return stock_data
 
 

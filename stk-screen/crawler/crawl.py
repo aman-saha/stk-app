@@ -20,6 +20,14 @@ currentTime = now.strftime("%H:%M:%S")
 print currentDate
 print currentTime
 
+collections = {
+			'Nifty 50' : 'nifty_50',
+			# 'Nifty Next 50' : 'nifty_next_50',
+			# 'Nifty Midcap 50' : 'nifty_midcap_50',
+			# 'Nifty Smlcap 50':'nifty_smlcap_50',
+			'Nifty Bank' : 'nifty_bank',
+		}
+
 class crawl():
 	def __init__(self,url):
 		self.url = url
@@ -32,10 +40,7 @@ class crawl():
 		self.driver.get(self.url)
 
 	def getStockList(self):
-		print "Hello world!!"
-		#stockIndex = ["Nifty 50", "Nifty Next 50", "Nifty Midcap 50"]
-		stockIndex = ["Nifty 50", "Nifty Bank"]
-		for index in stockIndex:
+		for index in collections.keys():
 			ob.getEachStock(index)
 			time.sleep(5)
 		
@@ -46,21 +51,12 @@ class crawl():
 		table = self.driver.find_element_by_xpath('//*[@id="dataTable"]')
 		rows = table.find_elements_by_xpath('//*[@id="dataTable"]/tbody/tr') # get all of the rows in the table
 		
-		collections = {
-			'Nifty 50' : 'nifty_50',
-			'Nifty Next 50' : 'nifty_next_50',
-			'Nifty Midcap 50' : 'nifty_midcap_50',
-			'Nifty Smlcap 50':'nifty_smlcap_50',
-			'Nifty Bank' : 'nifty_bank',
-		}
 		stockBulkData = []
 		stockData = {}
 		for row in rows:
 			stockData = ob.parseRow(row)
 			if stockData:
 				stockBulkData.append(stockData)
-		# print stockBulkData
-		print collections[index]
 		db.insertMany(stockBulkData,collections[index])
 		
 
@@ -69,30 +65,23 @@ class crawl():
 
 	def parseRow(self,row):
 		row = row.text
-		print row
-		print "\n"
 		row_data = row.split()
-		print row_data
-		print "\n"
 		stock_data = {}
 		if(row_data[0] != "Symbol"):
-			stock_data = {
-				"Symbol" : str(row_data[0]),
-				"Open" : locale.atof(row_data[3]),
-				"High" : locale.atof(row_data[4]),
-				"Low" : locale.atof(row_data[5]),
-				"LTP" : locale.atof(row_data[6]),
-				"Chng" : locale.atof(row_data[7]),
-				"Chng%" : locale.atof(row_data[8]),
-				"Volume" : locale.atof(row_data[8]),
-				"Date" : currentDate,
-				"Time" : currentTime,
-			}
-		print stock_data
-		print "\n"
+			if(row_data[0] != "NIFTY"):
+				stock_data = {
+					"Symbol" : str(row_data[0]),
+					"Open" : locale.atof(row_data[1]),
+					"High" : locale.atof(row_data[2]),
+					"Low" : locale.atof(row_data[3]),
+					"LTP" : locale.atof(row_data[4]),
+					"Chng" : locale.atof(row_data[5]),
+					"Chng%" : locale.atof(row_data[6]),
+					"Volume" : locale.atof(row_data[7]),
+					"Date" : currentDate,
+					"Time" : currentTime,
+				}
 		return stock_data
-
-
 
 db = db()
 
