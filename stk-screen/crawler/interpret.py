@@ -2,23 +2,40 @@
 import os, sys, time
 from datetime import datetime
 from db import db
-
-class interpret():
-    def __init__(self):
-        self.a = 1
-    def getStockData(self):
-        collections = {
-			'Nifty 50' : 'nifty_50',
-			'Nifty Next 50' : 'nifty_next_50',
-			'Nifty Midcap 50' : 'nifty_midcap_50',
-			'Nifty Smlcap 50':'nifty_smlcap_50',
+collections = {
+			# 'Nifty 50' : 'nifty_50',
+			# 'Nifty Next 50' : 'nifty_next_50',
+			# 'Nifty Midcap 50' : 'nifty_midcap_50',
+			# 'Nifty Smlcap 50':'nifty_smlcap_50',
             'Nifty Bank' : 'nifty_bank',
 		}
-        stock_data = db.findMany("nifty_bank")
-        for i in stock_data:
-            print i
-            print "\n"
+class interpret():
+    def __init__(self):
+        self.marketSentiment = 0
+        self.globalMarketSentiment = 0
+    def getStockData(self):
+        for index in collections.values():
+            stock_data = db.findMany(index)
+            for stock in stock_data:
+                ob.stockCall(stock)
+    def calMarketSentiment(self):
+        index_val = []
+        index_arr = ['nifty_50','nifty_bank']
+        for index in index_arr:
+            res = db.findOne(index)
+            if(res):
+                index_val.append(res)
+        for i in range(0,len(index_val)):
+            self.marketSentiment = index_val[i]['Chng']
+        print self.marketSentiment
+        
+    def stockCall(self,stock):
+        print stock
+        print "\n"
+        
+
 
 db = db()
 ob = interpret()
 ob.getStockData()
+ob.calMarketSentiment()
