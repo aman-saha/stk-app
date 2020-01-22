@@ -17,5 +17,3 @@ class clear():
             db.delAll(index)
 
 db = db()
-ob = clear()
-ob.clearAllCollections()

@@ -13,14 +13,16 @@ class interpret():
     def __init__(self):
         self.marketSentiment = 0
         self.globalMarketSentiment = 0
+        self.retracement_stock = []
+        self.optional_stock = []
 
     def getStockData(self):
         for index in collections.values():
             stock_data = db.findMany(index)
             for stock in stock_data:
                 if stock:
-                    ob.stockCall(stock)
-                    
+                    self.stockCall(stock)
+
     def calMarketSentiment(self):
         index_val = []
         index_arr = ['nifty_50','nifty_bank']
@@ -33,44 +35,51 @@ class interpret():
         print self.marketSentiment
         
     def stockCall(self,stock):
-        print stock
-        print "\n"
-        stock_symbols = []
+        print stock["Symbol"]
         symbol = stock["Symbol"]
         ltp = stock["LTP"]
         chng = abs(stock["Chng"])
-        chng_percent = abs(stock["Chng%"])
+        chng_percent = stock["Chng%"]
         if(chng_percent > 3):
-            ob.retracementCall(symbol)
+            self.retracement_stock.append(symbol)
         elif(stock["LTP"] < 10000):
             if (ltp < 220):
                 if chng >= 1:
-                    stock_symbols.append(symbol)
+                    self.optional_stock.append(symbol)
             elif (ltp > 221 and ltp < 250):
                 if chng >= 3:
-                    stock_symbols.append(symbol)
+                    self.optional_stock.append(symbol)
             elif (ltp > 251 and ltp < 450):
                 if chng >= 4:
-                    stock_symbols.append(symbol)
+                    self.optional_stock.append(symbol)
             elif (ltp > 451 and ltp < 999):
                 if chng >=5:
-                    stock_symbols.append(symbol)
+                    self.optional_stock.append(symbol)
             elif (ltp > 999  and ltp < 2200):
                 if(chng >= 8):
-                    stock_symbols.append(symbol)
+                    self.optional_stock.append(symbol)
             elif (ltp > 2300):
                 if(chng > 30):
-                    stock_symbols.append(symbol)
-            ob.OptionalCall(stock_symbols)
+                    self.optional_stock.append(symbol)
 
-    def retracementCall(self,stockSymbol):
-        print "Sending E-mail to Aman\n"
+    def retracementCall(self):
+        print "Sending E-mail to Aman\nRetracement Call :\n"    
+        print self.retracement_stock
+        print "\n"
     
-    def OptionalCall(self,stockSymbols):
-        print "Sending E-mail to Aman\n"
-        print stockSymbols
-
+    def OptionalCall(self):
+        print "Sending E-mail to Aman\nOptional Call :\n"
+        print self.optional_stock
+        print "\n"
+    
+    def call(self):
+        self.getStockData()
+        self.retracementCall()
+        self.OptionalCall()
+        self.calMarketSentiment()
 db = db()
-ob = interpret()
-ob.getStockData()
+# ob = interpret()
+# ob.getStockData()
+# ob.retracementCall()
+# ob.OptionalCall()
 # ob.calMarketSentiment()

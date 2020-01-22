@@ -13,7 +13,6 @@ class db():
         print collection + "\n"
         col = self.stk_db[collection]
         res = col.insert_many(stockBulkData)
-        print (res.inserted_ids)
 
     def findOne(self,collection):
         col = self.stk_db[collection]

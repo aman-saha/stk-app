@@ -29,9 +29,16 @@ collections = {
 		}
 
 class crawl():
-	def __init__(self,url):
-		self.url = url
+	def __init__(self):
+		self.url = "https://www.nseindia.com/live_market/dynaContent/live_watch/equities_stock_watch.htm"
 	
+	def initCrawl(self):
+		for index in collections.keys():
+			self.initFirefoxBrowser()
+			self.getEachStock(index)
+			self.quit()
+			time.sleep(2)
+
 	def initFirefoxBrowser(self):
 		firefox_options = webdriver.FirefoxOptions()
 		firefox_options.add_argument("--incognito")
@@ -39,24 +46,23 @@ class crawl():
 		self.driver = webdriver.Firefox(firefox_options=firefox_options, executable_path="/Users/amsaha/workspaces/git_proj/stk-app/stk-screen/crawler/drivers/geckodriver")
 		self.driver.get(self.url)
 
-	def getStockList(self):
-		for index in collections.keys():
-			ob.getEachStock(index)
-			time.sleep(5)
 		
 	def getEachStock(self,index):
 		select = Select(self.driver.find_element_by_name('bankNiftySelect'))
 		select.select_by_visible_text(index)
 		self.driver.find_element_by_name('bankNiftySelect').click()
+		time.sleep(10)
 		table = self.driver.find_element_by_xpath('//*[@id="dataTable"]')
 		rows = table.find_elements_by_xpath('//*[@id="dataTable"]/tbody/tr') # get all of the rows in the table
 		
 		stockBulkData = []
 		stockData = {}
 		for row in rows:
-			stockData = ob.parseRow(row)
+			stockData = self.parseRow(row)
 			if stockData:
 				stockBulkData.append(stockData)
+		print len(stockBulkData)
+		print "\n"
 		db.insertMany(stockBulkData,collections[index])
 		
 
@@ -83,13 +89,8 @@ class crawl():
 				}
 		return stock_data
 
-db = db()
 
-url = "https://www.nseindia.com/live_market/dynaContent/live_watch/equities_stock_watch.htm"
-ob = crawl(url)
-ob.initFirefoxBrowser()
-ob.getStockList()
-ob.quit()
+db = db()
 
 
 
