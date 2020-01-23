@@ -1,5 +1,5 @@
 # stk-app
-personal stock screener
+personal stock screener - Crafted by aman-saha aka darknurd
 
 ## Installing pip
 ```
@@ -15,8 +15,8 @@ $ brew install python3
 ## Installing virtualenv
 ```
 $ sudo pip install virtualenv
-
 ```
+
 ## Setting up virtualenv
 ```
 $ virtualenv stk-screen
