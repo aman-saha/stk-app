@@ -4,7 +4,7 @@ from datetime import datetime
 from db import db
 collections = {
 			'Nifty 50' : 'nifty_50',
-			# 'Nifty Next 50' : 'nifty_next_50',
+			'Nifty Next 50' : 'nifty_next_50',
 			# 'Nifty Midcap 50' : 'nifty_midcap_50',
 			# 'Nifty Smlcap 50':'nifty_smlcap_50',
             'Nifty Bank' : 'nifty_bank',
@@ -40,7 +40,7 @@ class interpret():
         ltp = stock["LTP"]
         chng = abs(stock["Chng"])
         chng_percent = stock["Chng%"]
-        if(chng_percent > 3):
+        if(chng_percent >= 3):
             self.retracement_stock.append(symbol)
         elif(stock["LTP"] < 10000):
             if (ltp < 220):
@@ -78,8 +78,3 @@ class interpret():
         self.OptionalCall()
         self.calMarketSentiment()
 db = db()
-# ob = interpret()
-# ob.getStockData()
-# ob.retracementCall()
-# ob.OptionalCall()
-# ob.calMarketSentiment()
