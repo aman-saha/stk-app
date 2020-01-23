@@ -15,15 +15,17 @@ $ brew install python3
 ## Installing virtualenv
 ```
 $ sudo pip install virtualenv
+
 ```
+## Setting up virtualenv
 ```
 $ virtualenv stk-screen
 $ source stk-screen/bin/activate
 $ pip install selenium
 $ pip install pymongo
+```
 
-## Installing MongoDb
-
+## Installing Mongod
 ```
 $ brew services stop mongodb
 $ brew uninstall mongodb
