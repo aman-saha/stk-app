@@ -72,6 +72,10 @@ class interpret():
         print self.optional_stock
         print "\n"
     
+    def gapUpCall(self):
+
+    def gapDownCall(self):
+    
     def call(self):
         self.getStockData()
         self.retracementCall()
