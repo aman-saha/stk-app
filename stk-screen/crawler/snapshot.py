@@ -17,52 +17,56 @@ locale.setlocale( locale.LC_ALL, 'en_US.UTF-8' )
 now = datetime.now()
 currentDate = now.strftime("%d/%m/%Y")
 currentTime = now.strftime("%H:%M:%S")
-print currentDate
-print currentTime
+
+collections = {
+			'Nifty 50' : 'nifty_50',
+			'Nifty Next 50' : 'nifty_next_50',
+			'Nifty Midcap 50' : 'nifty_midcap_50',
+			# 'Nifty Smlcap 50':'nifty_smlcap_50',
+			'Nifty Bank' : 'nifty_bank',
+		}
+snapshot_collections = {
+			'Nifty 50' : 'snapshot_nifty_50',
+			'Nifty Next 50' : 'snapshot_nifty_next_50',
+			'Nifty Midcap 50' : 'snapshot_nifty_midcap_50',
+			# 'Nifty Smlcap 50':'snapshot_nifty_smlcap_50',
+			'Nifty Bank' : 'snapshot_nifty_bank',
+		}
 
 class snapshot():
-	def __init__(self,url):
-		self.url = url
+	def __init__(self):
+		self.url = "https://www.nseindia.com/live_market/dynaContent/live_watch/equities_stock_watch.htm"
 	
+	def initCrawl(self):
+		for index in snapshot_collections.keys():
+			self.initFirefoxBrowser()
+			time.sleep(5)
+			self.getEachStock(index)
+			self.quit()
+
 	def initFirefoxBrowser(self):
 		firefox_options = webdriver.FirefoxOptions()
 		firefox_options.add_argument("--incognito")
 		firefox_options.add_argument("--headless")
 		self.driver = webdriver.Firefox(firefox_options=firefox_options, executable_path="/Users/amsaha/workspaces/git_proj/stk-app/stk-screen/crawler/drivers/geckodriver")
 		self.driver.get(self.url)
-
-	def getStockList(self):
-		print "Hello world!!"
-		#stockIndex = ["Nifty 50", "Nifty Next 50", "Nifty Midcap 50"]
-		stockIndex = ["Nifty Bank"]
-		for index in stockIndex:
-			ob.getEachStock(index)
-			time.sleep(5)
 		
 	def getEachStock(self,index):
+		print index
 		select = Select(self.driver.find_element_by_name('bankNiftySelect'))
 		select.select_by_visible_text(index)
 		self.driver.find_element_by_name('bankNiftySelect').click()
 		table = self.driver.find_element_by_xpath('//*[@id="dataTable"]')
 		rows = table.find_elements_by_xpath('//*[@id="dataTable"]/tbody/tr') # get all of the rows in the table
-		
-		snapshot_collections = {
-			'Nifty 50' : 'snapshot_nifty_50',
-			'Nifty Next 50' : 'snapshot_nifty_next_50',
-			'Nifty Midcap 50' : 'snapshot_nifty_midcap_50',
-			'Nifty Smlcap 50':'snapshot_nifty_smlcap_50',
-			'Nifty Bank' : 'snapshot_nifty_bank',
-		}
+		print index
 		stockBulkData = []
 		stockData = {}
 		for row in rows:
-			stockData = ob.parseRow(row)
+			stockData = self.parseRow(row)
 			if stockData:
 				stockBulkData.append(stockData)
-		# print stockBulkData
 		db.insertMany(stockBulkData,snapshot_collections[index])
 		
-
 	def quit(self):	
 		self.driver.quit()
 
@@ -86,15 +90,6 @@ class snapshot():
 				}
 		return stock_data
 
-
-
 db = db()
-
-url = "https://www.nseindia.com/live_market/dynaContent/live_watch/equities_stock_watch.htm"
-ob = snapshot(url)
-ob.initFirefoxBrowser()
-ob.getStockList()
-ob.quit()
-
 
 

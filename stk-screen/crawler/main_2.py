@@ -1,7 +1,7 @@
 import os, sys, time
-from crawl import crawl
 from clear import clear
 from interpret import interpret
+from snapshot import snapshot
 from db import db
 from datetime import datetime
 
@@ -19,27 +19,24 @@ print "Start Date : " + startDate
 print "Start Time : " + startTime
 print "-----------------------------------"
 
-# print "Clearing the collection data"
-# clear = clear()
-# clear.clearAllCollections()
-# print "Clearing Done !!!"
+print "Clearing the collection data"
+clear = clear()
+clear.clearAllCollections()
+clear.clearAllSnapshotCollections()
+print "Clearing Done !!!"
 
 print "-----------------------------------"
 
-print "Crawling Started"
-ob = crawl()
+print " Creating Snapshot ..."
+ob = snapshot()
 ob.initCrawl()
-print "Crawling Done !!!"
+print "Snapshot Taken !!!"
+
 print "-----------------------------------"
 
-print "Analysis Started "
-"Hello Aman! All the best. Please wait while we process."
-time.sleep(2)
-ob = interpret()
-print "Final Results : "
-print "-----------------------------------"
-ob.call()
-print "Analysis Done!!!"
+print "Clearing the collection data"
+clear.clearAllCollections()
+print "Clearing Done !!!"
 
 now = datetime.now()
 endDate = now.strftime("%d/%m/%Y")

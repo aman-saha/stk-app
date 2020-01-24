@@ -12,7 +12,6 @@ from selenium.webdriver.support.ui import Select
 from db import db
 from datetime import datetime
 
-
 locale.setlocale( locale.LC_ALL, 'en_US.UTF-8' )
 
 now = datetime.now()
@@ -22,9 +21,16 @@ currentTime = now.strftime("%H:%M:%S")
 collections = {
 			'Nifty 50' : 'nifty_50',
 			'Nifty Next 50' : 'nifty_next_50',
-			# 'Nifty Midcap 50' : 'nifty_midcap_50',
+			'Nifty Midcap 50' : 'nifty_midcap_50',
 			# 'Nifty Smlcap 50':'nifty_smlcap_50',
 			'Nifty Bank' : 'nifty_bank',
+		}
+snapshot_collections = {
+			'Nifty 50' : 'snapshot_nifty_50',
+			'Nifty Next 50' : 'snapshot_nifty_next_50',
+			'Nifty Midcap 50' : 'snapshot_nifty_midcap_50',
+			'Nifty Smlcap 50':'snapshot_nifty_smlcap_50',
+			'Nifty Bank' : 'snapshot_nifty_bank',
 		}
 
 class crawl():
@@ -34,9 +40,9 @@ class crawl():
 	def initCrawl(self):
 		for index in collections.keys():
 			self.initFirefoxBrowser()
+			time.sleep(5)
 			self.getEachStock(index)
 			self.quit()
-			time.sleep(2)
 
 	def initFirefoxBrowser(self):
 		firefox_options = webdriver.FirefoxOptions()
@@ -45,12 +51,10 @@ class crawl():
 		self.driver = webdriver.Firefox(firefox_options=firefox_options, executable_path="/Users/amsaha/workspaces/git_proj/stk-app/stk-screen/crawler/drivers/geckodriver")
 		self.driver.get(self.url)
 
-		
 	def getEachStock(self,index):
 		select = Select(self.driver.find_element_by_name('bankNiftySelect'))
 		select.select_by_visible_text(index)
 		self.driver.find_element_by_name('bankNiftySelect').click()
-		time.sleep(2)
 		table = self.driver.find_element_by_xpath('//*[@id="dataTable"]')
 		rows = table.find_elements_by_xpath('//*[@id="dataTable"]/tbody/tr') # get all of the rows in the table
 		
@@ -62,7 +66,6 @@ class crawl():
 				stockBulkData.append(stockData)
 		db.insertMany(stockBulkData,collections[index])
 		
-
 	def quit(self):	
 		self.driver.quit()
 
@@ -85,7 +88,6 @@ class crawl():
 					"Time" : currentTime,
 				}
 		return stock_data
-
 
 db = db()
 

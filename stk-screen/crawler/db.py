@@ -40,7 +40,10 @@ class db():
         col = self.stk_db[collection]
         res = col.delete_many({})
         return res.deleted_count
-
+    # returns no of documents in a collection
+    def count(self,collection,query):
+        col = self.stk_db[collection]
+        return col.count(query)
     # delete a collection
     def dropCollection(self,collection):
         col = self.stk_db[collection]
