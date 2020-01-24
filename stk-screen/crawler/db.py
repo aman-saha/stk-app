@@ -11,31 +11,36 @@ class db():
 
     # inserts N documents into a collection
     def insertMany(self,stockBulkData,collection):
-        print collection + "\n"
         col = self.stk_db[collection]
         res = col.insert_many(stockBulkData)
+
     # returns the first document in a collection
     def findOne(self,collection):
         col = self.stk_db[collection]
         return col.find_one()
+
     # returns all the documents in a collection
     def findMany(self,collection):
         col = self.stk_db[collection]
         return col.find()
+
     # return all document matching a particular query
     def findQuery(self,collection,query):
         col = self.stk_db[collection]
         return col.find(query)
+
     # delete all documents matching a particular query in a collection and return count
     def delManyQuery(self,collection,query):
         col = self.stk_db[collection]
         res = col.delete_many(query)
         return res.deleted_count
+
     # delete all documents in a collection and return count
     def delAll(self,collection):
         col = self.stk_db[collection]
         res = col.delete_many({})
         return res.deleted_count
+
     # delete a collection
     def dropCollection(self,collection):
         col = self.stk_db[collection]

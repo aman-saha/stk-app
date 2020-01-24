@@ -12,13 +12,12 @@ from selenium.webdriver.support.ui import Select
 from db import db
 from datetime import datetime
 
+
 locale.setlocale( locale.LC_ALL, 'en_US.UTF-8' )
 
 now = datetime.now()
 currentDate = now.strftime("%d/%m/%Y")
 currentTime = now.strftime("%H:%M:%S")
-print currentDate
-print currentTime
 
 collections = {
 			'Nifty 50' : 'nifty_50',
@@ -51,7 +50,7 @@ class crawl():
 		select = Select(self.driver.find_element_by_name('bankNiftySelect'))
 		select.select_by_visible_text(index)
 		self.driver.find_element_by_name('bankNiftySelect').click()
-		time.sleep(10)
+		time.sleep(2)
 		table = self.driver.find_element_by_xpath('//*[@id="dataTable"]')
 		rows = table.find_elements_by_xpath('//*[@id="dataTable"]/tbody/tr') # get all of the rows in the table
 		
@@ -61,8 +60,6 @@ class crawl():
 			stockData = self.parseRow(row)
 			if stockData:
 				stockBulkData.append(stockData)
-		print len(stockBulkData)
-		print "\n"
 		db.insertMany(stockBulkData,collections[index])
 		
 

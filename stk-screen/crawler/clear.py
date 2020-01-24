@@ -14,6 +14,7 @@ class clear():
         self.remove = 1
     def clearAllCollections(self):
         for index in collections.values():
+            print "Clearing collection : " + index + "\n" 
             db.delAll(index)
 
 db = db()

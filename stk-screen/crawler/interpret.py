@@ -35,46 +35,67 @@ class interpret():
         print self.marketSentiment
         
     def stockCall(self,stock):
-        print stock["Symbol"]
+        # print stock["Symbol"]
         symbol = stock["Symbol"]
         ltp = stock["LTP"]
+        o_chng = stock["Chng"]
         chng = abs(stock["Chng"])
         chng_percent = stock["Chng%"]
         if(chng_percent >= 3):
-            self.retracement_stock.append(symbol)
+            self.retracement_stock.append(stock)
         elif(stock["LTP"] < 10000):
             if (ltp < 220):
                 if chng >= 1:
-                    self.optional_stock.append(symbol)
+                    self.optional_stock.append(stock)
             elif (ltp > 221 and ltp < 250):
                 if chng >= 3:
-                    self.optional_stock.append(symbol)
+                    self.optional_stock.append(stock)
             elif (ltp > 251 and ltp < 450):
                 if chng >= 4:
-                    self.optional_stock.append(symbol)
+                    self.optional_stock.append(stock)
             elif (ltp > 451 and ltp < 999):
                 if chng >=5:
-                    self.optional_stock.append(symbol)
+                    self.optional_stock.append(stock)
             elif (ltp > 999  and ltp < 2200):
                 if(chng >= 8):
-                    self.optional_stock.append(symbol)
+                    self.optional_stock.append(stock)
             elif (ltp > 2300):
                 if(chng > 30):
-                    self.optional_stock.append(symbol)
+                    self.optional_stock.append(stock)
 
     def retracementCall(self):
-        print "Sending E-mail to Aman\nRetracement Call :\n"    
-        print self.retracement_stock
-        print "\n"
-    
-    def OptionalCall(self):
-        print "Sending E-mail to Aman\nOptional Call :\n"
-        print self.optional_stock
-        print "\n"
-    
-    def gapUpCall(self):
+        symbols = []
+        print "Sending E-mail to Aman\nRetracement Call :\n"
+        for i in self.retracement_stock:
+            symbols.append(i["Symbol"])
+            print "{"
+            print "Symbol : " + str(i["Symbol"]) + " , "
+            print "Open : " + str(i["Open"]) + " , "
+            print "LTP : " + str(i["LTP"]) + " , "
+            print "Low : " + str(i["Low"]) + " , "
+            print "High : " + str(i["High"]) + " , "
+            print "}"
+            print "\n"
+        print symbols
 
-    def gapDownCall(self):
+    def OptionalCall(self):
+        symbols = []
+        print "Sending E-mail to Aman\nOptional Call :\n"
+        for i in self.optional_stock:
+            symbols.append(i["Symbol"])
+            print "{"
+            print "Symbol : " + str(i["Symbol"]) + " , "
+            print "Open : " + str(i["Open"]) + " , "
+            print "LTP : " + str(i["LTP"]) + " , "
+            print "Low : " + str(i["Low"]) + " , "
+            print "High : " + str(i["High"]) + " , "
+            print "}"
+            print "\n"
+        print symbols
+        
+    # def gapUpCall(self):
+
+    # def gapDownCall(self):
     
     def call(self):
         self.getStockData()
