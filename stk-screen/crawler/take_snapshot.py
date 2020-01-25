@@ -19,24 +19,12 @@ print "Start Date : " + startDate
 print "Start Time : " + startTime
 print "-----------------------------------"
 
-print "Clearing the collection data"
-clear = clear()
-clear.clearAllCollections()
-clear.clearAllSnapshotCollections()
-print "Clearing Done !!!"
-
-print "-----------------------------------"
-
 print " Creating Snapshot ..."
 ob = snapshot()
 ob.initCrawl()
 print "Snapshot Taken !!!"
 
 print "-----------------------------------"
-
-print "Clearing the collection data"
-clear.clearAllCollections()
-print "Clearing Done !!!"
 
 now = datetime.now()
 endDate = now.strftime("%d/%m/%Y")
