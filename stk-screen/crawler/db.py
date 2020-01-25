@@ -49,3 +49,13 @@ class db():
         col = self.stk_db[collection]
         col.drop()
     
+    def getLastNDocuments(self,N,collection):
+        col = self.stk_db[collection]
+        if(col.count() < N):
+            return "Try another time!!!"
+        return col.find().skip(col.count() - N)
+    def getLastNDocumentsByQuery(self,N,collection,query):
+        print query
+        col = self.stk_db[collection]
+        return col.find(query)
+    
