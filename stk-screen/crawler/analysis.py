@@ -50,10 +50,12 @@ class analysis():
 		last_candle = candles[len(candles) - 1]
 		high_price = []
 		low_price = []
+		avg_price = []
 		ltp = []
 		for i in candles:
 			high_price.append(i["High"])
 			low_price.append(i["Low"])
+			avg_price.append((i["High"] + i["Low"] / 2))
 		high_mean = np.mean(high_price)
 		low_mean = np.mean(low_price)
 		print "High Mean"

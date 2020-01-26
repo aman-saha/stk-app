@@ -7,6 +7,11 @@ collections = {
 			'Nifty Next 50' : 'nifty_next_50',
 			'Nifty Midcap 50' : 'nifty_midcap_50',
 		}
+snapshot_collections = {
+			'Nifty 50' : 'snapshot_nifty_50',
+			'Nifty Next 50' : 'snapshot_nifty_next_50',
+			'Nifty Midcap 50' : 'snapshot_nifty_midcap_50',
+		}
 class interpret():
     def __init__(self):
         self.marketSentiment = 0
@@ -15,9 +20,11 @@ class interpret():
         self.optional_stock = []
 
     def getStockData(self):
+        stock_data = []
+        snapshot_data = []
         for index in collections.values():
             print index
-            stock_data = db.getLastNDocuments(50,index)
+            stock_data = db.getLastNDocuments(50,index) 
             for stock in stock_data:
                 if stock:
                     self.stockCall(stock)
