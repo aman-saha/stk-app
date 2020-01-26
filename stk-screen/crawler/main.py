@@ -25,14 +25,6 @@ ob.initCrawl()
 print "Crawling Done !!!"
 print "-----------------------------------"
 
-print "Analysis Started "
-"Hello Aman! All the best. Please wait while we process."
-ob = interpret()
-print "Final Results : "
-print "-----------------------------------"
-ob.call()
-print "Analysis Done!!!"
-
 now = datetime.now()
 endDate = now.strftime("%d/%m/%Y")
 endTime = now.strftime("%H:%M:%S")

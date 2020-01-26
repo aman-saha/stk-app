@@ -18,6 +18,11 @@ class db():
     def findOne(self,collection):
         col = self.stk_db[collection]
         return col.find_one()
+    
+    # returns the first document in a collection
+    def findLatestDoc(self,collection,query):
+        col = self.stk_db[collection]
+        return col.find(query).limit(1).sort("Time",-1)
 
     # returns all the documents in a collection
     def findMany(self,collection):

@@ -18,34 +18,45 @@ class interpret():
         self.globalMarketSentiment = 0
         self.retracement_stock = []
         self.optional_stock = []
+        self.gap_up_stock = []
+        self.gap_down_stock = []
 
     def getStockData(self):
         stock_data = []
-        snapshot_data = []
         for index in collections.values():
             print index
             stock_data = db.getLastNDocuments(50,index) 
             for stock in stock_data:
                 if stock:
-                    self.stockCall(stock)
+                    self.stockCall(index,stock)
 
-    def calMarketSentiment(self):
-        index_val = []
-        index_arr = ['nifty_50','nifty_bank']
-        for index in index_arr:
-            res = db.findOne(index)
-            if(res):
-                index_val.append(res)
-        for i in range(0,len(index_val)):
-            self.marketSentiment = index_val[i]['Chng']
-        print self.marketSentiment
+    # def calMarketSentiment(self):
+    #     index_val = []
+    #     index_arr = ['nifty_50','nifty_bank']
+    #     for index in index_arr:
+    #         res = db.findOne(index)
+    #         if(res):
+    #             index_val.append(res)
+    #     for i in range(0,len(index_val)):
+    #         self.marketSentiment = index_val[i]['Chng']
+    #     print self.marketSentiment
         
-    def stockCall(self,stock):
+    def stockCall(self,index,stock):
         symbol = stock["Symbol"]
         ltp = stock["LTP"]
         o_chng = stock["Chng"]
         chng = abs(stock["Chng"])
         chng_percent = stock["Chng%"]
+        
+        snap_stock = db.findLatestDoc(index,{"Symbol" : symbol})
+        for doc in snap_stock:
+            if doc:
+                open_gap = abs(doc["Open"] - stock["Open"])
+                if(doc["Open"] > stock["Open"] and open_gap > 3):
+                    self.gap_up_stock.append(symbol)
+                elif(doc["Open"] < stock["Open"] and open_gap > 3):
+                    self.gap_down_stock.append(symbol)
+
         if(chng_percent >= 3):
             self.retracement_stock.append(stock)
         elif(stock["LTP"] < 10000):
@@ -73,14 +84,6 @@ class interpret():
         print "Sending E-mail to Aman\nRetracement Call :\n"
         for i in self.retracement_stock:
             symbols.append(i["Symbol"])
-            # print "{"
-            # print "Symbol : " + str(i["Symbol"]) + " , "
-            # print "Open : " + str(i["Open"]) + " , "
-            # print "LTP : " + str(i["LTP"]) + " , "
-            # print "Low : " + str(i["Low"]) + " , "
-            # print "High : " + str(i["High"]) + " , "
-            # print "}"
-            # print "\n"
         print symbols
 
     def OptionalCall(self):
@@ -88,19 +91,19 @@ class interpret():
         print "Sending E-mail to Aman\nOptional Call :\n"
         for i in self.optional_stock:
             symbols.append(i["Symbol"])
-            # print "{"
-            # print "Symbol : " + str(i["Symbol"]) + " , "
-            # print "Open : " + str(i["Open"]) + " , "
-            # print "LTP : " + str(i["LTP"]) + " , "
-            # print "Low : " + str(i["Low"]) + " , "
-            # print "High : " + str(i["High"]) + " , "
-            # print "}"
-            # print "\n"
         print symbols
+
+    def gapCall(self):
+        print "Gap Up Call"
+        print self.gap_up_stock
+
+        print "Gap Down Call"
+        print self.gap_down_stock
 
     def call(self):
         self.getStockData()
         self.retracementCall()
         self.OptionalCall()
-        self.calMarketSentiment()
+        self.gapCall()
+        # self.calMarketSentiment()
 db = db()
