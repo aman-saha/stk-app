@@ -19,11 +19,11 @@ print "Start Date : " + startDate
 print "Start Time : " + startTime
 print "-----------------------------------"
 
-print "Crawling Started"
-ob = crawl()
-ob.initCrawl()
-print "Crawling Done !!!"
-print "-----------------------------------"
+# print "Crawling Started"
+# ob = crawl()
+# ob.initCrawl()
+# print "Crawling Done !!!"
+# print "-----------------------------------"
 
 print "Analysis Started "
 "Hello Aman! All the best. Please wait while we process."

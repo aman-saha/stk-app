@@ -36,8 +36,8 @@ class crawl():
 	def initCrawl(self):
 		for index in collections.keys():
 			self.initFirefoxBrowser()
-			time.sleep(5)
 			self.getEachStock(index)
+			time.sleep(5)
 			self.quit()
 
 	def initFirefoxBrowser(self):
@@ -51,6 +51,7 @@ class crawl():
 		select = Select(self.driver.find_element_by_name('bankNiftySelect'))
 		select.select_by_visible_text(index)
 		self.driver.find_element_by_name('bankNiftySelect').click()
+		time.sleep(5)
 		table = self.driver.find_element_by_xpath('//*[@id="dataTable"]')
 		rows = table.find_elements_by_xpath('//*[@id="dataTable"]/tbody/tr') # get all of the rows in the table
 		
@@ -60,6 +61,7 @@ class crawl():
 			stockData = self.parseRow(row)
 			if stockData:
 				stockBulkData.append(stockData)
+		# print stockBulkData
 		db.insertMany(stockBulkData,collections[index])
 		
 	def quit(self):	

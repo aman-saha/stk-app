@@ -57,5 +57,6 @@ class db():
     def getLastNDocumentsByQuery(self,N,collection,query):
         print query
         col = self.stk_db[collection]
-        return col.find(query)
+        N = min(N,col.count()/50)
+        return col.find(query).limit(N)
     

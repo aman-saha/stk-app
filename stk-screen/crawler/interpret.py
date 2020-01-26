@@ -5,9 +5,7 @@ from db import db
 collections = {
 			'Nifty 50' : 'nifty_50',
 			'Nifty Next 50' : 'nifty_next_50',
-			# 'Nifty Midcap 50' : 'nifty_midcap_50',
-			# 'Nifty Smlcap 50':'nifty_smlcap_50',
-            'Nifty Bank' : 'nifty_bank',
+			'Nifty Midcap 50' : 'nifty_midcap_50',
 		}
 class interpret():
     def __init__(self):
@@ -18,7 +16,8 @@ class interpret():
 
     def getStockData(self):
         for index in collections.values():
-            stock_data = db.findMany(index)
+            print index
+            stock_data = db.getLastNDocuments(50,index)
             for stock in stock_data:
                 if stock:
                     self.stockCall(stock)
@@ -35,7 +34,6 @@ class interpret():
         print self.marketSentiment
         
     def stockCall(self,stock):
-        # print stock["Symbol"]
         symbol = stock["Symbol"]
         ltp = stock["LTP"]
         o_chng = stock["Chng"]
@@ -68,14 +66,14 @@ class interpret():
         print "Sending E-mail to Aman\nRetracement Call :\n"
         for i in self.retracement_stock:
             symbols.append(i["Symbol"])
-            print "{"
-            print "Symbol : " + str(i["Symbol"]) + " , "
-            print "Open : " + str(i["Open"]) + " , "
-            print "LTP : " + str(i["LTP"]) + " , "
-            print "Low : " + str(i["Low"]) + " , "
-            print "High : " + str(i["High"]) + " , "
-            print "}"
-            print "\n"
+            # print "{"
+            # print "Symbol : " + str(i["Symbol"]) + " , "
+            # print "Open : " + str(i["Open"]) + " , "
+            # print "LTP : " + str(i["LTP"]) + " , "
+            # print "Low : " + str(i["Low"]) + " , "
+            # print "High : " + str(i["High"]) + " , "
+            # print "}"
+            # print "\n"
         print symbols
 
     def OptionalCall(self):
@@ -83,20 +81,16 @@ class interpret():
         print "Sending E-mail to Aman\nOptional Call :\n"
         for i in self.optional_stock:
             symbols.append(i["Symbol"])
-            print "{"
-            print "Symbol : " + str(i["Symbol"]) + " , "
-            print "Open : " + str(i["Open"]) + " , "
-            print "LTP : " + str(i["LTP"]) + " , "
-            print "Low : " + str(i["Low"]) + " , "
-            print "High : " + str(i["High"]) + " , "
-            print "}"
-            print "\n"
+            # print "{"
+            # print "Symbol : " + str(i["Symbol"]) + " , "
+            # print "Open : " + str(i["Open"]) + " , "
+            # print "LTP : " + str(i["LTP"]) + " , "
+            # print "Low : " + str(i["Low"]) + " , "
+            # print "High : " + str(i["High"]) + " , "
+            # print "}"
+            # print "\n"
         print symbols
-        
-    # def gapUpCall(self):
 
-    # def gapDownCall(self):
-    
     def call(self):
         self.getStockData()
         self.retracementCall()
