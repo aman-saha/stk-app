@@ -57,7 +57,7 @@ class interpret():
                 elif(doc["Open"] < stock["Open"] and open_gap > 3):
                     self.gap_down_stock.append(symbol)
 
-        if(chng_percent >= 3):
+        if(chng_percent >= 3 or chng_percent <=-1):
             self.retracement_stock.append(stock)
         elif(stock["LTP"] < 10000):
             if (ltp < 220):
