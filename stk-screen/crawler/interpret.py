@@ -16,7 +16,8 @@ class interpret():
     def __init__(self):
         self.marketSentiment = 0
         self.globalMarketSentiment = 0
-        self.retracement_stock = []
+        self.positve_retracement_stock = []
+        self.negative_stock = []
         self.optional_stock = []
         self.gap_up_stock = []
         self.gap_down_stock = []
@@ -57,8 +58,10 @@ class interpret():
                 elif(doc["Open"] < stock["Open"] and open_gap > 3):
                     self.gap_down_stock.append(symbol)
 
-        if(chng_percent >= 3 or chng_percent <=-1):
-            self.retracement_stock.append(stock)
+        if(chng_percent >= 3):
+            self.positve_retracement_stock.append(stock)
+        elif(chng_percent <= -1):
+            self.negative_stock.append(stock)
         elif(stock["LTP"] < 10000):
             if (ltp < 220):
                 if chng >= 1:
@@ -80,24 +83,30 @@ class interpret():
                     self.optional_stock.append(stock)
 
     def retracementCall(self):
-        symbols = []
-        print "Sending E-mail to Aman\nRetracement Call :\n"
-        for i in self.retracement_stock:
-            symbols.append(i["Symbol"])
-        print symbols
+        pos_symbols = []
+        neg_symbols = []
+        print "\n Sending E-mail to Aman\n Positve Retracement Call :\n"
+        for i in self.positve_retracement_stock:
+            pos_symbols.append(i["Symbol"])
+        print pos_symbols
+
+        print "\n Negative Sell Call :\n"
+        for i in self.negative_stock:
+            neg_symbols.append(i["Symbol"])
+        print neg_symbols
 
     def OptionalCall(self):
         symbols = []
-        print "Sending E-mail to Aman\nOptional Call :\n"
+        print "\nSending E-mail to Aman\nOptional Call :\n"
         for i in self.optional_stock:
             symbols.append(i["Symbol"])
         print symbols
 
     def gapCall(self):
-        print "Gap Up Call"
+        print "\nGap Up Call\n"
         print self.gap_up_stock
 
-        print "Gap Down Call"
+        print "\nGap Down Call\n"
         print self.gap_down_stock
 
     def call(self):
