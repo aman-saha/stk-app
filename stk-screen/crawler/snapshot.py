@@ -22,13 +22,11 @@ collections = {
 			'Nifty 50' : 'nifty_50',
 			'Nifty Next 50' : 'nifty_next_50',
 			'Nifty Midcap 50' : 'nifty_midcap_50',
-			'Nifty Bank' : 'nifty_bank',
 		}
 snapshot_collections = {
 			'Nifty 50' : 'snapshot_nifty_50',
 			'Nifty Next 50' : 'snapshot_nifty_next_50',
 			'Nifty Midcap 50' : 'snapshot_nifty_midcap_50',
-			'Nifty Bank' : 'snapshot_nifty_bank',
 		}
 
 class snapshot():

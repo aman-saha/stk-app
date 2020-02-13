@@ -52,17 +52,18 @@ class interpret():
         snap_stock = db.findLatestDoc(index,{"Symbol" : symbol})
         for doc in snap_stock:
             if doc:
-                open_gap = abs(doc["Open"] - stock["Open"])
-                if(doc["Open"] > stock["Open"] and open_gap > 3):
-                    self.gap_up_stock.append(symbol)
-                elif(doc["Open"] < stock["Open"] and open_gap > 3):
-                    self.gap_down_stock.append(symbol)
+                if(doc["LTP"] > 200 and doc["LTP"] < 10000):
+                    open_gap = abs(doc["Open"] - stock["Open"])
+                    if(doc["Open"] > stock["Open"] and open_gap > 3):
+                        self.gap_up_stock.append(symbol)
+                    elif(doc["Open"] < stock["Open"] and open_gap > 3):
+                        self.gap_down_stock.append(symbol)
 
-        if(chng_percent >= 3):
+        if(chng_percent >= 3 and ltp < 10000):
             self.positve_retracement_stock.append(stock)
-        elif(chng_percent <= -1):
+        elif(chng_percent <= -0.7 and ltp > 200 and ltp < 10000):
             self.negative_stock.append(stock)
-        elif(stock["LTP"] < 10000):
+        elif(ltp > 200 and ltp < 10000):
             if (ltp < 220):
                 if chng >= 1:
                     self.optional_stock.append(stock)
@@ -87,19 +88,24 @@ class interpret():
         neg_symbols = []
         print "\n Sending E-mail to Aman\n Positve Retracement Call :\n"
         for i in self.positve_retracement_stock:
-            pos_symbols.append(i["Symbol"])
+            # print "Symbol = " + str(i["Symbol"])
+            # print "LTP = " + str(i["LTP"])
+            # print "Change% = " + str(i["Chng%"])
+            # print "High = " + str(i["High"])
+            # print "-------------------------"
+            pos_symbols.append(str(i["Symbol"]))
         print pos_symbols
 
         print "\n Negative Sell Call :\n"
         for i in self.negative_stock:
-            neg_symbols.append(i["Symbol"])
+            neg_symbols.append(str(i["Symbol"]))
         print neg_symbols
 
     def OptionalCall(self):
         symbols = []
         print "\nSending E-mail to Aman\nOptional Call :\n"
         for i in self.optional_stock:
-            symbols.append(i["Symbol"])
+            symbols.append(str(i["Symbol"]))
         print symbols
 
     def gapCall(self):
